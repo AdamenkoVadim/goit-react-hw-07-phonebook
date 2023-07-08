@@ -5,22 +5,17 @@ axios.defaults.baseURL = 'https://64a942418b9afaf4844a76d4.mockapi.io';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
-  // Используем символ подчеркивания как имя первого параметра,
-  // потому что в этой операции он нам не нужен
+
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/contacts');
-      // При успешном запросе возвращаем промис с данными
       return response.data;
     } catch (e) {
-      // При ошибке запроса возвращаем промис
-      // который будет отклонен с текстом ошибки
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-//Добавление
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact, thunkAPI) => {
@@ -33,7 +28,6 @@ export const addContact = createAsyncThunk(
   }
 );
 
-//Удаление
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id, thunkAPI) => {
